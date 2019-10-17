@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="movie"
+            type="com.android.moviecrackers.model.movielist.MovieResult" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".view.activity.MovieDetailsActivity"
+        tools:showIn="@layout/activity_movie_details">
+
+        <LinearLayout
+            android:padding="@dimen/padding_size_8"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_gravity="end"
+                android:gravity="end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_13"
+                android:text="@{movie.releaseDate}" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_16"
+                android:textStyle="bold"
+                android:text="@string/overview" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_13"
+                android:text="@{movie.overview}" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.2dp"
+                android:layout_marginStart="@dimen/margin_size_5"
+                android:layout_marginTop="@dimen/margin_size_10"
+                android:layout_marginEnd="@dimen/margin_size_5"
+                android:background="@color/colorAccent" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingEnd="@dimen/padding_size_8"
+                android:paddingStart="@dimen/padding_size_8"
+                android:gravity="center_vertical"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/view_width_32"
+                        android:layout_height="@dimen/view_height_32"
+                        android:padding="@dimen/padding_size_5"
+                        android:src="@drawable/vote_icon" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{String.valueOf(movie.voteAverage)}"
+                        android:textSize="@dimen/text_size_13" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/view_width_32"
+                        android:layout_height="@dimen/view_height_32"
+                        android:padding="@dimen/padding_size_5"
+                        android:src="@drawable/popularity_icon" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{String.valueOf(movie.popularity)}"
+                        android:textSize="@dimen/text_size_13" />
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatRatingBar
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:numStars="5"
+                    android:rating="@{(float)movie.voteAverage/2}" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.2dp"
+                android:layout_marginStart="@dimen/margin_size_5"
+                android:layout_marginTop="@dimen/margin_size_5"
+                android:layout_marginEnd="@dimen/margin_size_5"
+                android:background="@color/colorAccent" />
+
+            <TextView
+                android:layout_marginTop="@dimen/margin_size_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_16"
+                android:textStyle="bold"
+                android:text="@string/production_companies" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_production_company_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_view_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <include layout="@layout/company_placeholder_item" />
+
+                    <include layout="@layout/company_placeholder_item" />
+
+                    <include layout="@layout/company_placeholder_item" />
+
+                    <include layout="@layout/company_placeholder_item" />
+
+                    <include layout="@layout/company_placeholder_item" />
+
+                </LinearLayout>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+            </FrameLayout>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

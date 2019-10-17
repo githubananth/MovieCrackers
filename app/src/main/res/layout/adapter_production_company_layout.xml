@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.android.moviecrackers.utility.API" />
+
+        <variable
+            name="company"
+            type="com.android.moviecrackers.model.moviedetails.ProductionCompany" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/lyt_movie_item_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:cardCornerRadius="@dimen/card_radius_size_5"
+        app:cardElevation="@dimen/elevation_size_2"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/padding_size_5"
+            android:paddingTop="@dimen/padding_size_8"
+            android:paddingBottom="@dimen/padding_size_8"
+            android:weightSum="2">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="@dimen/view_width_64"
+                android:layout_height="@dimen/view_height_64"
+                android:thumbnail="@{API.THUMBNAIL_BASE_URL+company.logoPath}" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_size_5">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@{company.name}"
+                    android:textSize="@dimen/text_size_16"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:text="@{company.originCountry}"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/text_size_13" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

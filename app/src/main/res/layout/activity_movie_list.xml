@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorAccent"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="?attr/actionBarSize"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_centerInParent="true"
+                android:padding="@dimen/padding_size_5"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="splash_loading.json"
+                app:lottie_loop="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/padding_size_16"
+                android:paddingEnd="@dimen/padding_size_16"
+                android:text="@string/movie_crackers"
+                android:textAppearance="@android:style/TextAppearance.Medium"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".view.activity.MovieListActivity">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_movie_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_view_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <include layout="@layout/movie_placeholder_item" />
+
+                    <include layout="@layout/movie_placeholder_item" />
+
+                    <include layout="@layout/movie_placeholder_item" />
+
+                    <include layout="@layout/movie_placeholder_item" />
+
+                    <include layout="@layout/movie_placeholder_item" />
+
+                </LinearLayout>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</layout>
