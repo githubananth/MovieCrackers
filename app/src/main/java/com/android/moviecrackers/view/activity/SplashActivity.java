@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 
 import com.android.moviecrackers.R;
 
 public class SplashActivity extends AppCompatActivity {
 
+    /* Delay Duration for splash screen, it will stay until this given duration time */
     private static final int DELAY_DURATION = 1000;
 
     @Override
@@ -18,14 +20,22 @@ public class SplashActivity extends AppCompatActivity {
         delayScreen();
     }
 
+    /**
+     * Handler's run function wait until delay duration over, after that pageRedirection() get called.
+     */
     void delayScreen() {
-        new android.os.Handler().postDelayed(new Runnable() {
+        new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 pageRedirection();
             }
         }, DELAY_DURATION);
     }
+
+    /**
+     * Once delay time over this method get called once and redirect to MovieListActivity.class,
+     * Where as we have defined all the movies list network call and showing the list
+     */
 
     private void pageRedirection() {
         Intent homeIntent = new Intent(this, MovieListActivity.class);
