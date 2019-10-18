@@ -52,7 +52,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
     private void setToolBarContent() {
         setSupportActionBar(movieDetailsBinding.toolbar);
-        movieDetailsBinding.toolbarLayout.setTitle(movieResult.title);
+        movieDetailsBinding.toolbarLayout.setTitle(movieResult.getTitle());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         movieDetailsBinding.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

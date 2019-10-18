@@ -5,59 +5,70 @@ import android.os.Parcelable;
 import android.widget.ImageView;
 
 import androidx.databinding.BindingAdapter;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import com.android.moviecrackers.R;
 import com.android.moviecrackers.utility.CustomImageView;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
+@Entity(tableName = "movie_table")
 public class MovieResult implements Parcelable {
+
+    public MovieResult() {
+    }
+
+    @PrimaryKey(autoGenerate = true)
+    private int autoId;
 
     @SerializedName("popularity")
     @Expose
     public Double popularity;
+
     @SerializedName("vote_count")
     @Expose
     public Integer voteCount;
-    @SerializedName("video")
-    @Expose
-    public Boolean video;
+
     @SerializedName("poster_path")
     @Expose
     public String posterPath;
+
     @SerializedName("id")
     @Expose
     public Integer id;
-    @SerializedName("adult")
-    @Expose
-    public Boolean adult;
+
     @SerializedName("backdrop_path")
     @Expose
     public String backdropPath;
-    @SerializedName("original_language")
-    @Expose
-    public String originalLanguage;
+
     @SerializedName("original_title")
     @Expose
     public String originalTitle;
-    @SerializedName("genre_ids")
-    @Expose
-    public List<Integer> genreIds = null;
+
     @SerializedName("title")
     @Expose
     public String title;
+
     @SerializedName("vote_average")
     @Expose
     public Double voteAverage;
+
     @SerializedName("overview")
     @Expose
     public String overview;
+
     @SerializedName("release_date")
     @Expose
     public String releaseDate;
 
+    public int getAutoId() {
+        return autoId;
+    }
+
+    public void setAutoId(int autoId) {
+        this.autoId = autoId;
+    }
 
     public Double getPopularity() {
         return popularity;
@@ -73,14 +84,6 @@ public class MovieResult implements Parcelable {
 
     public void setVoteCount(Integer voteCount) {
         this.voteCount = voteCount;
-    }
-
-    public Boolean getVideo() {
-        return video;
-    }
-
-    public void setVideo(Boolean video) {
-        this.video = video;
     }
 
     public String getPosterPath() {
@@ -99,14 +102,6 @@ public class MovieResult implements Parcelable {
         this.id = id;
     }
 
-    public Boolean getAdult() {
-        return adult;
-    }
-
-    public void setAdult(Boolean adult) {
-        this.adult = adult;
-    }
-
     public String getBackdropPath() {
         return backdropPath;
     }
@@ -115,28 +110,12 @@ public class MovieResult implements Parcelable {
         this.backdropPath = backdropPath;
     }
 
-    public String getOriginalLanguage() {
-        return originalLanguage;
-    }
-
-    public void setOriginalLanguage(String originalLanguage) {
-        this.originalLanguage = originalLanguage;
-    }
-
     public String getOriginalTitle() {
         return originalTitle;
     }
 
     public void setOriginalTitle(String originalTitle) {
         this.originalTitle = originalTitle;
-    }
-
-    public List<Integer> getGenreIds() {
-        return genreIds;
-    }
-
-    public void setGenreIds(List<Integer> genreIds) {
-        this.genreIds = genreIds;
     }
 
     public String getTitle() {
@@ -188,18 +167,13 @@ public class MovieResult implements Parcelable {
         } else {
             voteCount = in.readInt();
         }
-        byte tmpVideo = in.readByte();
-        video = tmpVideo == 0 ? null : tmpVideo == 1;
         posterPath = in.readString();
         if (in.readByte() == 0) {
             id = null;
         } else {
             id = in.readInt();
         }
-        byte tmpAdult = in.readByte();
-        adult = tmpAdult == 0 ? null : tmpAdult == 1;
         backdropPath = in.readString();
-        originalLanguage = in.readString();
         originalTitle = in.readString();
         title = in.readString();
         if (in.readByte() == 0) {
@@ -242,7 +216,6 @@ public class MovieResult implements Parcelable {
             parcel.writeByte((byte) 1);
             parcel.writeInt(voteCount);
         }
-        parcel.writeByte((byte) (video == null ? 0 : video ? 1 : 2));
         parcel.writeString(posterPath);
         if (id == null) {
             parcel.writeByte((byte) 0);
@@ -250,9 +223,7 @@ public class MovieResult implements Parcelable {
             parcel.writeByte((byte) 1);
             parcel.writeInt(id);
         }
-        parcel.writeByte((byte) (adult == null ? 0 : adult ? 1 : 2));
         parcel.writeString(backdropPath);
-        parcel.writeString(originalLanguage);
         parcel.writeString(originalTitle);
         parcel.writeString(title);
         if (voteAverage == null) {
