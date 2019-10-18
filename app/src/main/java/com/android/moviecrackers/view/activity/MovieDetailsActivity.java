@@ -87,4 +87,10 @@ public class MovieDetailsActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition( R.anim.activity_stay, R.anim.slide_bottom );
+    }
+
 }

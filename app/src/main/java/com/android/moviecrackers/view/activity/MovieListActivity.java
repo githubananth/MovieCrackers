@@ -98,6 +98,7 @@ public class MovieListActivity extends AppCompatActivity implements ItemClickLis
         Intent movieDetailsIntent = new Intent(mContext, MovieDetailsActivity.class);
         movieDetailsIntent.putExtra("movie_details", movieResult);
         startActivity(movieDetailsIntent);
+        overridePendingTransition( R.anim.slide_up, R.anim.activity_stay );
     }
 
 }
