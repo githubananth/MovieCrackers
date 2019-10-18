@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.android.moviecrackers.data.network.ApiServices;
 import com.android.moviecrackers.data.network.RetroClient;
+import com.android.moviecrackers.data.repository.task.DeleteMovieAsyncTask;
 import com.android.moviecrackers.data.repository.task.InsertMovieAsyncTask;
 import com.android.moviecrackers.database.MovieDao;
 import com.android.moviecrackers.database.MovieDatabase;
@@ -38,6 +39,10 @@ public class MovieLocalRepository {
 
     public void insert(MovieResult movieResult) {
         new InsertMovieAsyncTask(movieDao).execute(movieResult);
+    }
+
+    public void deleteMoviesToLocal() {
+        new DeleteMovieAsyncTask(movieDao).execute();
     }
 
     public LiveData<List<MovieResult>> getMoviesList() {

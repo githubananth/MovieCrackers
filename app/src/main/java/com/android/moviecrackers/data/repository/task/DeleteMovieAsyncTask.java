@@ -5,16 +5,16 @@ import android.os.AsyncTask;
 import com.android.moviecrackers.database.MovieDao;
 import com.android.moviecrackers.model.movielist.MovieResult;
 
-public class InsertMovieAsyncTask extends AsyncTask<MovieResult, Void, Void> {
+public class DeleteMovieAsyncTask extends AsyncTask<Void, Void, Void> {
     private MovieDao movieDao;
 
-    public InsertMovieAsyncTask(MovieDao movieDao) {
+    public DeleteMovieAsyncTask(MovieDao movieDao) {
         this.movieDao = movieDao;
     }
 
     @Override
-    protected Void doInBackground(MovieResult... movieResults) {
-        movieDao.insertMovies(movieResults[0]);
+    protected Void doInBackground(Void... voids) {
+        movieDao.deleteAllMovieRecords();
         return null;
     }
 }

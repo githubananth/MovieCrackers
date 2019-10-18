@@ -45,6 +45,10 @@ public class MovieModelView extends AndroidViewModel {
         movieLocalRepository.insert(movieResult);
     }
 
+    public void deleteMoviesToLocal() {
+        movieLocalRepository.deleteMoviesToLocal();
+    }
+
     public LiveData<MovieResponse> getMovieResponse() {
         return responseMutableLiveData;
     }
