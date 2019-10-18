@@ -18,31 +18,31 @@
         tools:showIn="@layout/activity_movie_details">
 
         <LinearLayout
-            android:padding="@dimen/padding_size_8"
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_size_8">
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:gravity="end"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size_13"
-                android:text="@{movie.releaseDate}" />
+                android:text="@{movie.releaseDate}"
+                android:textSize="@dimen/text_size_13" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/overview"
                 android:textSize="@dimen/text_size_16"
-                android:textStyle="bold"
-                android:text="@string/overview" />
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size_13"
-                android:text="@{movie.overview}" />
+                android:text="@{movie.overview}"
+                android:textSize="@dimen/text_size_13" />
 
             <View
                 android:layout_width="match_parent"
@@ -56,18 +56,18 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingEnd="@dimen/padding_size_8"
-                android:paddingStart="@dimen/padding_size_8"
                 android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/padding_size_8"
+                android:paddingEnd="@dimen/padding_size_8"
                 android:weightSum="2">
 
                 <LinearLayout
-                    android:orientation="horizontal"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="@dimen/view_width_32"
@@ -118,47 +118,57 @@
                 android:background="@color/colorAccent" />
 
             <TextView
-                android:layout_marginTop="@dimen/margin_size_10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_size_10"
+                android:text="@string/production_companies"
                 android:textSize="@dimen/text_size_16"
-                android:textStyle="bold"
-                android:text="@string/production_companies" />
+                android:textStyle="bold" />
 
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/list_production_company_id"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <com.facebook.shimmer.ShimmerFrameLayout
-                android:id="@+id/shimmer_view_container"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="vertical">
-
-                <LinearLayout
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list_production_company_id"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/img_no_network_id"
+                    android:visibility="gone"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="false"
+                    app:lottie_fileName="network_error.json" />
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmer_view_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:orientation="vertical">
 
-                    <include layout="@layout/company_placeholder_item" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-                    <include layout="@layout/company_placeholder_item" />
+                        <include layout="@layout/company_placeholder_item" />
 
-                    <include layout="@layout/company_placeholder_item" />
+                        <include layout="@layout/company_placeholder_item" />
 
-                    <include layout="@layout/company_placeholder_item" />
+                        <include layout="@layout/company_placeholder_item" />
 
-                    <include layout="@layout/company_placeholder_item" />
+                        <include layout="@layout/company_placeholder_item" />
 
-                </LinearLayout>
+                        <include layout="@layout/company_placeholder_item" />
 
-            </com.facebook.shimmer.ShimmerFrameLayout>
+                    </LinearLayout>
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
             </FrameLayout>
         </LinearLayout>
 

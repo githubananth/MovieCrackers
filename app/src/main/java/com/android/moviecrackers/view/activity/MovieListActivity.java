@@ -56,7 +56,7 @@ public class MovieListActivity extends AppCompatActivity implements ItemClickLis
                     showMoviesList();
 
                     movieModelView.deleteMoviesToLocal();
-                    
+
                     int movieSize = movieResultList.size();
                     for (int i = 0; i < movieSize; i++) {
                         movieModelView.insertMoviesToLocal(movieResultList.get(i));
@@ -99,6 +99,5 @@ public class MovieListActivity extends AppCompatActivity implements ItemClickLis
         movieDetailsIntent.putExtra("movie_details", movieResult);
         startActivity(movieDetailsIntent);
     }
-
 
 }

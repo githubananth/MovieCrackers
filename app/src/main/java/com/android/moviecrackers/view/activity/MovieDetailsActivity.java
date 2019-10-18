@@ -16,6 +16,7 @@ import com.android.moviecrackers.databinding.ActivityMovieDetailsBinding;
 import com.android.moviecrackers.model.moviedetails.MovieDetailsResponse;
 import com.android.moviecrackers.model.moviedetails.ProductionCompany;
 import com.android.moviecrackers.model.movielist.MovieResult;
+import com.android.moviecrackers.utility.NetworkCheck;
 import com.android.moviecrackers.view.adapter.CompanyAdapter;
 
 import java.util.List;
@@ -38,7 +39,13 @@ public class MovieDetailsActivity extends AppCompatActivity {
         initView();
         getMovieIntentDetails();
         setToolBarContent();
-        getMovieDetails();
+        if (NetworkCheck.isNetworkConnected(mContext)) {
+            getMovieDetails();
+        } else {
+            movieDetailsBinding.includeMovieDetailsId.shimmerViewContainer.setVisibility(View.GONE);
+            movieDetailsBinding.includeMovieDetailsId.imgNoNetworkId.setVisibility(View.VISIBLE);
+        }
+
     }
 
     private void initView() {
@@ -68,6 +75,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         companyModelView.getCompanyResponse().observe(this, new Observer<MovieDetailsResponse>() {
             @Override
             public void onChanged(MovieDetailsResponse movieDetailsResponse) {
+
                 movieDetailsBinding.includeMovieDetailsId.shimmerViewContainer.stopShimmerAnimation();
                 movieDetailsBinding.includeMovieDetailsId.shimmerViewContainer.setVisibility(View.GONE);
                 productionCompanyList = movieDetailsResponse.getProductionCompanies();
