@@ -13,7 +13,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
 public class CompanyRepository {
     private static CompanyRepository companyRepository;
     private static final String TAG = CompanyRepository.class.getSimpleName();
