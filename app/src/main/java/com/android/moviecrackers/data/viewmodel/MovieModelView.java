@@ -20,10 +20,14 @@ public class MovieModelView extends AndroidViewModel {
     private Application application;
     private MovieServerRepository movieServerRepository;
     private MovieLocalRepository movieLocalRepository;
-    private MutableLiveData<MovieResponse> movieResponseMutableLiveData;
 
     private MutableLiveData<MovieResponse> responseMutableLiveData = new MutableLiveData<>();
     private LiveData<List<MovieResult>> listMutableLiveData = new MutableLiveData<>();
+
+    /*
+    By extending AndroidViewModel class it is mandatory to define constructor
+    Initialise the local and server repository
+     */
 
     public MovieModelView(@NonNull Application application) {
         super(application);
@@ -32,11 +36,20 @@ public class MovieModelView extends AndroidViewModel {
         this.movieLocalRepository = new MovieLocalRepository(application);
     }
 
+    /*
+    Call server manipulation process for get movie details
+    Which will return as Mutable live data format
+    */
+
     public void getTopRatedMovies() {
         this.movieServerRepository = new MovieServerRepository();
         responseMutableLiveData = movieServerRepository.getTopRatedMovies();
     }
 
+    /*
+    Call local db manipulation process for insert, get and delete movie details
+    Which will return as Live data format
+    */
     public void getTopRatedMoviesFromLocal() {
         listMutableLiveData = movieLocalRepository.getMoviesList();
     }

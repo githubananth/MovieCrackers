@@ -16,7 +16,7 @@ public abstract class MovieDatabase extends RoomDatabase {
     private static MovieDatabase instance;
 
     public abstract MovieDao movieDao();
-
+// it will create and provide access to the database
     public static synchronized MovieDatabase getInstance(Context context) {
         if (instance == null) {
             instance = Room

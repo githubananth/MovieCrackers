@@ -39,8 +39,6 @@ public class CompanyRepository {
 
         Call<MovieDetailsResponse> defaultResponseCall = apiServices.getProductionCompany(movieId, API.API_KEY);
 
-        Log.e(TAG, "onRequestURL" + defaultResponseCall.request().url());
-
         defaultResponseCall.enqueue(new Callback<MovieDetailsResponse>() {
             @Override
             public void onResponse(Call<MovieDetailsResponse> call, Response<MovieDetailsResponse> response) {

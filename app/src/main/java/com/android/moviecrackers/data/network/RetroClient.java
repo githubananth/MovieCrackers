@@ -13,10 +13,13 @@ public class RetroClient {
 
     private static Retrofit getRetrofitInstance(String baseUrl) {
 
+        // Conversion format of the response from the server
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
-
+        /*
+            This will enable to call server and building connection to server
+        */
         return new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .client(provideOkHttpClient())
@@ -24,6 +27,9 @@ public class RetroClient {
                 .build();
     }
 
+         /*
+             It will provide the timeout for the network calls for connection, read and write
+          */
     private static OkHttpClient provideOkHttpClient() {
         OkHttpClient.Builder okhttpClientBuilder = new OkHttpClient.Builder();
         okhttpClientBuilder.connectTimeout(15, TimeUnit.SECONDS);
@@ -33,7 +39,7 @@ public class RetroClient {
         return okhttpClientBuilder.build();
     }
 
-
+    // Which established the end point function definition like get, post, delete and patch
     public static ApiServices getServiceApi(String baseUrl) {
         return getRetrofitInstance(baseUrl).create(ApiServices.class);
     }

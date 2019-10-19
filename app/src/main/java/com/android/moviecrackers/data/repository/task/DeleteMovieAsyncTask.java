@@ -11,7 +11,7 @@ public class DeleteMovieAsyncTask extends AsyncTask<Void, Void, Void> {
     public DeleteMovieAsyncTask(MovieDao movieDao) {
         this.movieDao = movieDao;
     }
-
+    // Call in working thread with background task for deleting the record from db by using Dao
     @Override
     protected Void doInBackground(Void... voids) {
         movieDao.deleteAllMovieRecords();
