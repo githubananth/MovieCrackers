@@ -39,6 +39,10 @@ public class MovieDetailsActivity extends AppCompatActivity {
         initView();
         getMovieIntentDetails();
         setToolBarContent();
+        /* Check network connection and based on that it will show the movie details
+         * If network connection then it will show network error json formatted image
+         * For showing the animated image have used Lottie library used.
+         */
         if (NetworkCheck.isNetworkConnected(mContext)) {
             getMovieDetails();
         } else {
@@ -57,6 +61,10 @@ public class MovieDetailsActivity extends AppCompatActivity {
         movieDetailsBinding.setMovie(movieResult);
     }
 
+    /*
+     * Show toolbar content for the CollapsingToolbarLayout, Where as given the title
+     * setDisplayHomeAsUpEnabled(true) used to enable back press icon
+     */
     private void setToolBarContent() {
         setSupportActionBar(movieDetailsBinding.toolbar);
         movieDetailsBinding.toolbarLayout.setTitle(movieResult.getTitle());
@@ -78,6 +86,10 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
                 movieDetailsBinding.includeMovieDetailsId.shimmerViewContainer.stopShimmerAnimation();
                 movieDetailsBinding.includeMovieDetailsId.shimmerViewContainer.setVisibility(View.GONE);
+                /*
+                 * Show the Production company list, from the url
+                 * Get the company list and set it into the adapter
+                 */
                 productionCompanyList = movieDetailsResponse.getProductionCompanies();
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
                 movieDetailsBinding.includeMovieDetailsId.listProductionCompanyId.setLayoutManager(linearLayoutManager);
@@ -90,7 +102,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
     @Override
     public void finish() {
         super.finish();
-        overridePendingTransition( R.anim.activity_stay, R.anim.slide_bottom );
+        // Which back pressing or finishing the activity Current activity goes bottom and previous activity stay back
+        overridePendingTransition(R.anim.activity_stay, R.anim.slide_bottom);
     }
 
 }

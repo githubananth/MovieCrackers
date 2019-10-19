@@ -8,6 +8,11 @@ import android.net.NetworkInfo;
 import android.os.Build;
 
 public class NetworkCheck {
+    /*
+    * Check the network connectivity while calling the server,
+    * If any of the network connected with mobile whether WIFI or Mobile data,
+    * then it return true, else it will return false
+     */
     public static boolean isNetworkConnected(Context mContext) {
         final ConnectivityManager connectivityManager = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
 
